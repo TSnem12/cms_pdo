@@ -50,6 +50,49 @@ class Article {
         
     }
 
+    //changes: deleting method//
+
+    public function deleteWithImage($id) {
+
+        $article = $this->getArticleById($id);
+
+        if($article) {
+
+            if($article->user_id == $_SESSION['user_id']) {
+                
+                if(!empty($article->image) && file_exists($article->image)) {
+                    if(!unlink($article->image)) {
+                        return false;
+                    }
+                }
+        
+                $query = "DELETE FROM " . $this->table . " WHERE id = :id";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+                return $stmt->execute();
+
+            } else {
+                redirect("admin.php");
+            }
+
+
+        }
+        return false;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function getArticleWithOwnerById($id) {
         $query = "SELECT
                   articles.id,
@@ -78,9 +121,13 @@ class Article {
     }
 
 
-    public function formatCreatedAt($date) {
-
-        return date('F j, Y', strtotime($date));
+    public function getArticlesByUser($userId) {
+        $query = "SELECT * FROM " . $this->table . " WHERE user_id = :user_id ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
 
@@ -88,6 +135,27 @@ class Article {
 
 
 
+
+
+    public function formatCreatedAt($date) {
+
+        return date('F j, Y', strtotime($date));
+    }
+
+
+    public function create($title, $content, $author_id, $created_at, $image) {
+        $query = "INSERT INTO " . $this->table . " (title, content, user_id, created_at, image)
+                  VALUES (:title, :content, :user_id, :created_at, :image)";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':user_id', $author_id, PDO::PARAM_INT);
+        $stmt->bindParam(':created_at', $created_at);
+        $stmt->bindParam(':image', $image); 
+        
+        return $stmt->execute();
+    }
 
 
 
