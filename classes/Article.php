@@ -43,10 +43,15 @@ class Article {
         $article = $stmt->fetch(PDO::FETCH_OBJ);
 
         if($article) {
-            return $article;
+            if($article->user_id == $_SESSION['user_id']) {
+
+                return $article;
+            } else {
+                redirect("admin.php");
+            }
         } else {
             return false;
-        }
+        }  
         
     }
 
@@ -156,6 +161,41 @@ class Article {
         
         return $stmt->execute();
     }
+
+    public function uploadImage($file) {
+
+        $targetDir = 'uploads/';
+        
+    
+        if(!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+    
+        if(isset($file) && $file['error'] === 0) {
+            $targetFile = $targetDir . basename($file['name']);
+            $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+            $allowedTypes = ['gif', 'png', 'jpg', 'jpeg'];
+    
+            if(in_array($imageFileType, $allowedTypes)) {
+    
+                if(move_uploaded_file($file['tmp_name'], $targetFile)) {
+                    return $targetFile;
+                } else {
+                    return "There was an error uploading this file";
+                }
+    
+            } else {
+                return "Only JPG, JPEG, PNG, and GIF files are allowed";
+            }
+    
+    
+        }
+
+        return '';
+    }
+
+
+   
 
 
 

@@ -45,7 +45,7 @@ $userArticles = $article->getArticlesByUser($userId);
                             <?php echo $article->getExcerpt($articleItem->content); ?>
                         </td>
                         <td>
-                            <a href="edit-article.php?id=<?php echo $articleItem->id; ?>" class="btn btn-sm btn-primary me-1">Edit</a>
+                            <a href="edit_article.php?id=<?php echo $articleItem->id; ?>" class="btn btn-sm btn-primary me-1">Edit</a>
                         </td>
 
                         <!-- changes for deleting article -->

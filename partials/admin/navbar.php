@@ -21,8 +21,13 @@
                         <a class="nav-link active" aria-current="page" href="admin.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="create-article.php">Create Article</a>
+                        <a class="nav-link" href="create_article.php">Create Article</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="edit_article.php">Edit Article</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">View Site</a>
                     </li>
