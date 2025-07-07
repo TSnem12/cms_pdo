@@ -39,6 +39,7 @@ class User {
         if($user && password_verify($password, $user->password)) {
 
             $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $user->id;         
             $_SESSION['username'] = $user->username;
             $_SESSION['email'] = $user->email;
             $_SESSION['user_id'] = $user->id;

@@ -1,3 +1,4 @@
+
 <?php
 
 function base_url($path = "") {
@@ -49,6 +50,7 @@ function formatDate($date) {
     return date('F j, Y', strtotime($date));
 }
 
+//changes://
 
 function checkUserLoggedIn() {
     if(session_status() === PHP_SESSION_NONE) {
@@ -58,5 +60,3 @@ function checkUserLoggedIn() {
         redirect("login.php");
     }
 }
-
-
