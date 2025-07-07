@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">CMS PDO System - Admin</a>
+            <a class="navbar-brand" href="admin.php">CMS PDO System - Admin</a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -18,7 +18,7 @@
             >
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin.php">Dashboard</a>
+                        <a class="nav-link" href="admin.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="create_article.php">Create Article</a>
@@ -32,12 +32,9 @@
                         <a class="nav-link" href="index.php">View Site</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="login.php">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> 
