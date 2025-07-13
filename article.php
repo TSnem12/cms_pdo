@@ -30,6 +30,7 @@ if($articleId) {
                     src="<?php echo htmlspecialchars($articleData->image); ?>"
                     ="img-fluid w-100"
                     alt="Featured Image"
+                    style="max-height: 600px"
                 >
             <?php else: ?>    
 
@@ -38,6 +39,7 @@ if($articleId) {
                     src="https://via.placeholder.com/1200x600"
                     class="img-fluid w-100"
                     alt="Featured Image"
+                    style="max-height: 600px"
                 >
             <?php endif; ?>
         </div>
@@ -72,7 +74,7 @@ if($articleId) {
 
         <!-- Back to Home Button -->
         <div class="mt-4">
-            <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+            <a href="<?php echo base_url("index.php"); ?>" class="btn btn-secondary">← Back to Home</a>
         </div>
 </main>
 

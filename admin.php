@@ -17,11 +17,29 @@ $userArticles = $article->getArticlesByUser($userId);
 <main class="container my-5">
         <h2 class="mb-4">Welcome <?php echo $_SESSION['username']; ?> to your2 Admin Dashboard</h2>
 
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            
+            <form class="d-flex align-items-center" method="post" action="<?php echo base_url('create-dummy-articles.php'); ?>">
+                <label class="form-label me-3" for="articleCount">Number of Articles</label>
+                <input id="articleCount" min="1" style="width: 100px;" class="form-control me-3" name="article_count" type="number">
+                <button class="btn btn-primary" type="submit">Generate Articles</button>
+            </form>
+
+            <form action="<?php echo base_url('reorder_articles.php'); ?>" method="post">
+                <button name="reorder_articles" class="btn btn-warning" type="submit">Reorder Article ID's</button>
+            </form>
+
+            <button id="deleteSelected" class="btn btn-danger">Delete Selected Articles</button>
+
+        </div>
+        
+
         <!-- Articles Table -->
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
+                        
                         <th>ID</th>
                         <th>Title</th>
                         <th>Author</th>
@@ -29,6 +47,7 @@ $userArticles = $article->getArticlesByUser($userId);
                         <th>Excerpt</th>
                         <th>Edit</th>
                         <th>Delete</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +56,7 @@ $userArticles = $article->getArticlesByUser($userId);
 
                     <!-- Example Article Row -->
                     <tr>
+    
                         <td><?php echo $articleItem->id; ?></td>
                         <td><?php echo $articleItem->title; ?></td>
                         <td><?php echo $_SESSION['username']; ?></td>
@@ -55,8 +75,9 @@ $userArticles = $article->getArticlesByUser($userId);
                                 <input name="id" value="<?php echo $articleItem->id; ?>" type="hidden">
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </form>    
-                            
+                        
                         </td>
+
                     </tr>
                     <!-- You can add more articles here -->
                     <?php endforeach; ?>
@@ -68,9 +89,14 @@ $userArticles = $article->getArticlesByUser($userId);
 
 
 
+       
+
 
 
 <?php
 include "partials/admin/footer.php"
 
 ?>
+
+
+

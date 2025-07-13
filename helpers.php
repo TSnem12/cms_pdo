@@ -50,6 +50,17 @@ function formatDate($date) {
     return date('F j, Y', strtotime($date));
 }
 
+function isUserLoggedIn() {
+    if(isset($_SESSION['user_id'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+
 //changes://
 
 function checkUserLoggedIn() {
